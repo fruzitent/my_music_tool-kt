@@ -2,7 +2,10 @@
 
 plugins { `kotlin-dsl` }
 
-dependencies { compileOnly(libs.gradle.android) }
+dependencies {
+  compileOnly(libs.gradle.android)
+  compileOnly(libs.gradle.jetbrains.compose)
+}
 
 gradlePlugin {
   plugins {
@@ -13,6 +16,10 @@ gradlePlugin {
     register("AndroidLibrary") {
       id = "org.fruzitent.mymusictool.android.library"
       implementationClass = "org.fruzitent.mymusictool.gradle.PluginAndroidLibrary"
+    }
+    register("JetbrainsCompose") {
+      id = "org.fruzitent.mymusictool.jetbrains.compose"
+      implementationClass = "org.fruzitent.mymusictool.gradle.PluginJetbrainsCompose"
     }
   }
 }
