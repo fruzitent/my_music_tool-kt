@@ -20,3 +20,5 @@ pluginManagement {
     gradlePluginPortal()
   }
 }
+
+include(":src:composeApp")
