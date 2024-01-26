@@ -5,15 +5,19 @@ android-sdk-min = "24"
 android-sdk-target = "34"
 jdk = "21"
 jetbrains-compose = "1.5.11"
+jetbrains-kotlin = "1.9.21"
 
 [libraries]
 gradle-android = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 gradle-jetbrains-compose = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "jetbrains-compose" }
+gradle-jetbrains-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "jetbrains-kotlin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
+jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "jetbrains-kotlin" }
 mymusictool-android-application = { id = "org.fruzitent.mymusictool.android.application", version = "unknown" }
 mymusictool-android-library = { id = "org.fruzitent.mymusictool.android.library", version = "unknown" }
 mymusictool-jetbrains-compose = { id = "org.fruzitent.mymusictool.jetbrains.compose", version = "unknown" }
+mymusictool-jetbrains-kotlin-multiplatform = { id = "org.fruzitent.mymusictool.jetbrains.kotlin.multiplatform", version = "unknown" }

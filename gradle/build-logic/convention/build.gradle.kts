@@ -5,6 +5,7 @@ plugins { `kotlin-dsl` }
 dependencies {
   compileOnly(libs.gradle.android)
   compileOnly(libs.gradle.jetbrains.compose)
+  compileOnly(libs.gradle.jetbrains.kotlin)
 }
 
 gradlePlugin {
@@ -20,6 +21,10 @@ gradlePlugin {
     register("JetbrainsCompose") {
       id = "org.fruzitent.mymusictool.jetbrains.compose"
       implementationClass = "org.fruzitent.mymusictool.gradle.PluginJetbrainsCompose"
+    }
+    register("JetbrainsKotlinMultiplatform") {
+      id = "org.fruzitent.mymusictool.jetbrains.kotlin.multiplatform"
+      implementationClass = "org.fruzitent.mymusictool.gradle.PluginJetbrainsKotlinMultiplatform"
     }
   }
 }
