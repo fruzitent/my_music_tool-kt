@@ -2,6 +2,17 @@
 
 plugins { `kotlin-dsl` }
 
-dependencies {}
+dependencies { compileOnly(libs.gradle.android) }
 
-gradlePlugin { plugins {} }
+gradlePlugin {
+  plugins {
+    register("AndroidApplication") {
+      id = "org.fruzitent.mymusictool.android.application"
+      implementationClass = "org.fruzitent.mymusictool.gradle.PluginAndroidApplication"
+    }
+    register("AndroidLibrary") {
+      id = "org.fruzitent.mymusictool.android.library"
+      implementationClass = "org.fruzitent.mymusictool.gradle.PluginAndroidLibrary"
+    }
+  }
+}
