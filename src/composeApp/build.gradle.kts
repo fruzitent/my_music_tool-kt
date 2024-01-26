@@ -10,6 +10,9 @@ android { namespace = "org.fruzitent.mymusictool" }
 kotlin {
   sourceSets {
     androidMain.dependencies { implementation(libs.androidx.activity.compose) }
-    commonMain.dependencies { implementation(libs.androidx.compose.runtime) }
+    commonMain.dependencies {
+      implementation(libs.androidx.compose.material3)
+      implementation(libs.androidx.compose.runtime)
+    }
   }
 }
