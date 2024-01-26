@@ -2,6 +2,7 @@
 
 plugins {
   alias(libs.plugins.mymusictool.android.application)
+  alias(libs.plugins.mymusictool.jetbrains.compose)
   alias(libs.plugins.mymusictool.jetbrains.kotlin.multiplatform)
 }
 
