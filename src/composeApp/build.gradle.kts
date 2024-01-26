@@ -7,4 +7,9 @@ plugins {
 
 android { namespace = "org.fruzitent.mymusictool" }
 
-kotlin { sourceSets { androidMain.dependencies { implementation(libs.androidx.activity) } } }
+kotlin {
+  sourceSets {
+    androidMain.dependencies { implementation(libs.androidx.activity.compose) }
+    commonMain.dependencies { implementation(libs.androidx.compose.runtime) }
+  }
+}
