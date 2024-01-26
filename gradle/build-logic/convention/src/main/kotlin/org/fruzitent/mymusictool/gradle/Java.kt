@@ -13,5 +13,6 @@ fun Project.configureJava() {
   }
 }
 
-private fun Project.java(action: JavaPluginExtension.() -> Unit) =
-    extensions.configure<JavaPluginExtension>(action)
+private fun Project.java(action: JavaPluginExtension.() -> Unit) {
+  extensions.configure<JavaPluginExtension>(action)
+}

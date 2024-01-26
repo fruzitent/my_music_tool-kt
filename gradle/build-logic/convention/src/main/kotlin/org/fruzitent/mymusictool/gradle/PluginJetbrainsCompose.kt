@@ -14,5 +14,6 @@ fun Project.configureJetbrainsCompose() {
   compose {}
 }
 
-private fun Project.compose(action: ComposeExtension.() -> Unit) =
-    extensions.configure<ComposeExtension>(action)
+private fun Project.compose(action: ComposeExtension.() -> Unit) {
+  extensions.configure<ComposeExtension>(action)
+}

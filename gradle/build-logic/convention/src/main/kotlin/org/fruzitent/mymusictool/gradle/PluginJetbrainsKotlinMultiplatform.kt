@@ -15,5 +15,6 @@ fun Project.configureJetbrainsKotlinMultiplatform() {
   configureKotlin()
 }
 
-private fun Project.kotlin(action: KotlinMultiplatformExtension.() -> Unit) =
-    extensions.configure<KotlinMultiplatformExtension>(action)
+private fun Project.kotlin(action: KotlinMultiplatformExtension.() -> Unit) {
+  extensions.configure<KotlinMultiplatformExtension>(action)
+}
