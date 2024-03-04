@@ -3,4 +3,7 @@
 .gradle/
 build/
 
+jniLibs/
+**/kotlin/uniffi
+
 local.properties

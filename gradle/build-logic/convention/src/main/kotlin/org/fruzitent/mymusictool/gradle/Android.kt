@@ -16,6 +16,16 @@ fun Project.configureAndroid() {
   androidComponents {}
 }
 
+fun Project.configureNDK() {
+  android {
+    defaultConfig {
+      ndk {
+        abiFilters += listOf("arm64-v8a", "x86_64")
+      }
+    }
+  }
+}
+
 private fun Project.android(action: BaseExtension.() -> Unit) {
   extensions.configure<BaseExtension>(action)
 }

@@ -10,4 +10,5 @@ class PluginAndroidApplication : Plugin<Project> {
 fun Project.configureAndroidApplication() {
   with(pluginManager) { apply("com.android.application") }
   configureAndroid()
+  configureNDK()
 }

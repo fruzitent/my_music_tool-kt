@@ -8,6 +8,11 @@ plugins {
 
 android { namespace = "org.fruzitent.mymusictool" }
 
+dependencies {
+  // https://mozilla.github.io/uniffi-rs/kotlin/gradle.html#jna-dependency
+  implementation(libs.jna) { artifact { type = "aar" } }
+}
+
 kotlin {
   sourceSets {
     androidMain.dependencies { implementation(libs.androidx.activity.compose) }
