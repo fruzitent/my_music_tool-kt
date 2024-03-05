@@ -27,6 +27,16 @@ clean_ffi:
 clean_lib:
 	rm --force --recursive "$(KT_DIR)/src/composeApp/src/androidMain/jniLibs/"
 
+.PHONY: docker
+docker:
+	docker buildx build . \
+		--build-context rs="../rs/" \
+		--file "./docker/Dockerfile" \
+		--output "dest=./,type=local" \
+		--tag "ghcr.io/fruzitent/my_music_tool-kt:latest" \
+		--target "artifact" \
+		;
+
 .PHONY: install
 install: install_ffi install_lib
 

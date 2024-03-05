@@ -1,15 +1,12 @@
 # syntax=docker/dockerfile:1.6-labs
+# @help: https://docs.docker.com/reference/dockerfile
 
 ARG WORKDIR="/workspaces/my_music_tool-kt/"
 
-FROM docker.io/library/ubuntu:24.04 as deps
+FROM docker.io/library/ubuntu:24.04 as base
 
 ARG WORKDIR
 WORKDIR ${WORKDIR}
-
-ENV ANDROID_HOME="/usr/lib/android-sdk/"
-ENV ANDROID_NDK_HOME="/usr/lib/android-ndk/"
-ENV ANDROID_USER_HOME="/root/.android/"
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
@@ -17,6 +14,24 @@ ARG DEBIAN_FRONTEND="noninteractive"
 RUN <<EOF
     rm -rf "/etc/apt/apt.conf.d/docker-clean"
 EOF
+
+# hadolint ignore=DL3008
+RUN --mount=type=cache,target=/var/cache/apt/,sharing=locked --mount=type=cache,target=/var/lib/apt/,sharing=locked <<EOF
+    apt-get update
+    apt-get -y install --no-install-recommends \
+        "git" \
+        "neovim" \
+        ;
+EOF
+
+FROM base as deps
+
+ARG WORKDIR
+WORKDIR ${WORKDIR}
+
+ENV ANDROID_HOME="/usr/lib/android-sdk/"
+ENV ANDROID_NDK_HOME="/usr/lib/android-ndk/"
+ENV ANDROID_USER_HOME="/root/.android/"
 
 # hadolint ignore=DL3008
 RUN --mount=type=cache,target=/var/cache/apt/,sharing=locked --mount=type=cache,target=/var/lib/apt/,sharing=locked <<EOF
@@ -59,9 +74,14 @@ RUN --mount=type=cache,target=/root/.gradle/,sharing=locked <<EOF
     ./gradlew :src:composeApp:build
 EOF
 
+# hadolint ignore=DL3006
+FROM scratch as artifact
+
+ARG WORKDIR
+
+COPY --from=builder "${WORKDIR}/src/composeApp/build/outputs/apk/release/composeApp-release-unsigned.apk" "/src/composeApp/build/outputs/apk/release/"
+
 FROM docker.io/library/eclipse-temurin:21-jdk-alpine as runner
 
 ARG WORKDIR
 WORKDIR ${WORKDIR}
-
-COPY --from=builder "${WORKDIR}/src/composeApp/build/outputs/apk/release/composeApp-release-unsigned.apk" "/opt/my_music_tool.apk"
