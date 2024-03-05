@@ -1,0 +1,19 @@
+services:
+  kt:
+    build:
+      additional_contexts:
+        rs: "../../rs/"
+      context: ../
+      dockerfile: ./docker/Dockerfile
+      platforms:
+        - "linux/amd64"
+        # TODO: missing packages
+        # - "linux/arm64"
+      target: deps
+    image: ghcr.io/fruzitent/my_music_tool-kt:latest
+    pull_policy: if_not_present
+    volumes:
+      - kt_data:/workspaces/
+
+volumes:
+  kt_data:

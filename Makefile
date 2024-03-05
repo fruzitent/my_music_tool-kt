@@ -34,9 +34,8 @@ install: install_ffi install_lib
 install_ffi: $(KT_DIR)/src/composeApp/src/commonMain/kotlin/uniffi/
 
 $(KT_DIR)/src/composeApp/src/commonMain/kotlin/uniffi/: $(RS_DIR)/out/uniffi/
-	mkdir --parent                                "$(KT_DIR)/src/composeApp/src/commonMain/kotlin/"
-	ln --force --symbolic "$(RS_DIR)/out/uniffi/" "$(KT_DIR)/src/composeApp/src/commonMain/kotlin/"
-
+	mkdir --parent      "$(KT_DIR)/src/composeApp/src/commonMain/kotlin/"
+	cp --recursive "$<" "$(KT_DIR)/src/composeApp/src/commonMain/kotlin/"
 
 # TODO: statically dispatch platform
 # .PHONY: install_lib
@@ -49,15 +48,15 @@ $(KT_DIR)/src/composeApp/src/commonMain/kotlin/uniffi/: $(RS_DIR)/out/uniffi/
 
 # $(KT_DIR)/src/composeApp/src/androidMain/jniLibs/$(ABI)/libspotify.so: $(RS_DIR)/target/$(TARGET)/release/libspotify.so
 # 	mkdir --parent "$(KT_DIR)/src/composeApp/src/androidMain/jniLibs/$(ABI)/"
-# 	ln --force --symbolic "$<" "$@"
+# 	cp "$<" "$@"
 
 .PHONY: install_lib
 install_lib: $(KT_DIR)/src/composeApp/src/androidMain/jniLibs/arm64-v8a/libspotify.so $(KT_DIR)/src/composeApp/src/androidMain/jniLibs/x86_64/libspotify.so
 
 $(KT_DIR)/src/composeApp/src/androidMain/jniLibs/arm64-v8a/libspotify.so: $(RS_DIR)/target/aarch64-linux-android/release/libspotify.so
 	mkdir --parent "$(KT_DIR)/src/composeApp/src/androidMain/jniLibs/arm64-v8a/"
-	ln --force --symbolic "$<" "$@"
+	cp "$<" "$@"
 
 $(KT_DIR)/src/composeApp/src/androidMain/jniLibs/x86_64/libspotify.so: $(RS_DIR)/target/x86_64-linux-android/release/libspotify.so
 	mkdir --parent "$(KT_DIR)/src/composeApp/src/androidMain/jniLibs/x86_64/"
-	ln --force --symbolic "$<" "$@"
+	cp "$<" "$@"
