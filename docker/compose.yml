@@ -10,10 +10,10 @@ services:
         rs: "../../rs/"
       context: ../
       dockerfile: ./docker/Dockerfile
-      platforms:
-        - "linux/amd64"
-        # TODO: missing packages
-        # - "linux/arm64"
+      # platforms:
+      #   - "linux/amd64"
+      #   # TODO: missing packages
+      #   # - "linux/arm64"
       target: deps
     image: ghcr.io/fruzitent/my_music_tool-kt:latest
     pull_policy: if_not_present
