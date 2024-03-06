@@ -25,7 +25,7 @@ services:
         volume:
           nocopy: true
       - type: bind
-        source: ./jks/
+        source: ../jks/
         target: /workspaces/my_music_tool-kt/jks/
         read_only: true
 
