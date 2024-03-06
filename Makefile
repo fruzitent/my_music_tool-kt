@@ -18,10 +18,11 @@ clean: clean_ffi clean_lib
 	rm --force --recursive "./gradle/build-logic/convention/build/"
 	rm --force --recursive "./src/composeApp/.gradle/"
 	rm --force --recursive "./src/composeApp/build/"
+	rm --force "./local.properties"
 
 .PHONY: clean_ffi
 clean_ffi:
-	rm --force "$(KT_DIR)/src/composeApp/src/commonMain/kotlin/uniffi"
+	rm --force --recursive "$(KT_DIR)/src/composeApp/src/commonMain/kotlin/uniffi/"
 
 .PHONY: clean_lib
 clean_lib:
