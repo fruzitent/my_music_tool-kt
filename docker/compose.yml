@@ -28,6 +28,10 @@ services:
         source: ../jks/
         target: /workspaces/my_music_tool-kt/jks/
         read_only: true
+      - type: bind
+        source: ../../rs/
+        target: /workspaces/rs/
+        read_only: true
 
 volumes:
   kt_data:
