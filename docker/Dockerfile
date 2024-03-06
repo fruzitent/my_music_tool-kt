@@ -70,7 +70,7 @@ COPY "./gradle.properties"   "${WORKDIR}/"
 COPY "./gradlew"             "${WORKDIR}/"
 COPY "./settings.gradle.kts" "${WORKDIR}/"
 
-RUN --mount=type=cache,target=/root/.gradle/,sharing=locked <<EOF
+RUN --mount=type=cache,target=/root/.gradle/,sharing=locked --mount=type=bind,source=./jks/,target=${WORKDIR}/jks/,readonly=true <<EOF
     ./gradlew :src:composeApp:build
 EOF
 
@@ -79,7 +79,7 @@ FROM scratch as artifact
 
 ARG WORKDIR
 
-COPY --from=builder "${WORKDIR}/src/composeApp/build/outputs/apk/release/composeApp-release-unsigned.apk" "/src/composeApp/build/outputs/apk/release/"
+COPY --from=builder "${WORKDIR}/src/composeApp/build/outputs/apk/release/composeApp-release.apk" "/src/composeApp/build/outputs/apk/release/"
 
 FROM docker.io/library/eclipse-temurin:21-jdk-alpine as runner
 

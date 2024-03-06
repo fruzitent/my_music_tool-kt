@@ -1,0 +1,4 @@
+# @help: https://git-scm.com/docs/gitignore
+
+*.jks
+keystore.properties

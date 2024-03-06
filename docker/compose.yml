@@ -24,6 +24,10 @@ services:
         target: /workspaces/
         volume:
           nocopy: true
+      - type: bind
+        source: ./jks/
+        target: /workspaces/my_music_tool-kt/jks/
+        read_only: true
 
 volumes:
   kt_data:

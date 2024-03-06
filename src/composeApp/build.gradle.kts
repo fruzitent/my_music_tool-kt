@@ -6,7 +6,13 @@ plugins {
   alias(libs.plugins.mymusictool.jetbrains.kotlin.multiplatform)
 }
 
-android { namespace = "org.fruzitent.mymusictool" }
+android {
+  defaultConfig {
+    versionCode = 1
+    versionName = "0.1.0"
+  }
+  namespace = "org.fruzitent.mymusictool"
+}
 
 dependencies {
   // https://mozilla.github.io/uniffi-rs/kotlin/gradle.html#jna-dependency
