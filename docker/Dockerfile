@@ -63,8 +63,15 @@ COPY --from=rs "./target/aarch64-linux-android/release/libspotify.so" "${WORKDIR
 COPY --from=rs "./target/x86_64-linux-android/release/libspotify.so"  "${WORKDIR}/src/composeApp/src/androidMain/jniLibs/x86_64/"
 COPY --from=rs "./out/uniffi/"                                        "${WORKDIR}/src/composeApp/src/commonMain/kotlin/uniffi/"
 
-COPY "./gradle/"             "${WORKDIR}/gradle/"
-COPY "./src/"                "${WORKDIR}/src/"
+COPY "./gradle/build-logic/convention/src/"             "${WORKDIR}/gradle/build-logic/convention/src/"
+COPY "./gradle/build-logic/convention/build.gradle.kts" "${WORKDIR}/gradle/build-logic/convention/"
+COPY "./gradle/build-logic/settings.gradle.kts"         "${WORKDIR}/gradle/build-logic/"
+COPY "./gradle/wrapper/"                                "${WORKDIR}/gradle/wrapper/"
+COPY "./gradle/libs.versions.toml"                      "${WORKDIR}/gradle/"
+
+COPY "./src/composeApp/src/"             "${WORKDIR}/src/composeApp/src/"
+COPY "./src/composeApp/build.gradle.kts" "${WORKDIR}/src/composeApp/"
+
 COPY "./build.gradle.kts"    "${WORKDIR}/"
 COPY "./gradle.properties"   "${WORKDIR}/"
 COPY "./gradlew"             "${WORKDIR}/"
