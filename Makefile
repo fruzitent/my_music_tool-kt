@@ -13,11 +13,11 @@ build: install
 .PHONY: clean
 clean: clean_ffi clean_lib
 	rm --force --recursive "./.gradle/"
-	rm --force --recursive "./build/"
+	rm --force --recursive "./.kotlin/"
+	# TODO: "com.android.tools.build" and "org.gradle.kotlin.kotlin-dsl" embed "org.jetbrains.kotlin:kotlin-stdlib"
+	# TODO: https://github.com/JetBrains/kotlin/commit/656b61b945a46fb20d7c01cda85399914585f215#diff-fe49a6cee89678508563fae0cd006f9dc0523da9ef8582f44d8b0df02b72701eR68
 	rm --force --recursive "./gradle/build-logic/.gradle/"
-	rm --force --recursive "./gradle/build-logic/convention/build/"
-	rm --force --recursive "./src/composeApp/.gradle/"
-	rm --force --recursive "./src/composeApp/build/"
+	rm --force --recursive "./out/"
 	rm --force "./local.properties"
 
 .PHONY: clean_ffi

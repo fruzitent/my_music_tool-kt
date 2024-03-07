@@ -63,22 +63,22 @@ COPY --from=rs "./target/aarch64-linux-android/release/libspotify.so" "${WORKDIR
 COPY --from=rs "./target/x86_64-linux-android/release/libspotify.so"  "${WORKDIR}/src/composeApp/src/androidMain/jniLibs/x86_64/"
 COPY --from=rs "./out/uniffi/"                                        "${WORKDIR}/src/composeApp/src/commonMain/kotlin/uniffi/"
 
-COPY "./gradle/build-logic/convention/src/"             "${WORKDIR}/gradle/build-logic/convention/src/"
-COPY "./gradle/build-logic/convention/build.gradle.kts" "${WORKDIR}/gradle/build-logic/convention/"
-COPY "./gradle/build-logic/settings.gradle.kts"         "${WORKDIR}/gradle/build-logic/"
-COPY "./gradle/wrapper/"                                "${WORKDIR}/gradle/wrapper/"
-COPY "./gradle/libs.versions.toml"                      "${WORKDIR}/gradle/"
+# TODO: "com.android.tools.build" and "org.gradle.kotlin.kotlin-dsl" embed "org.jetbrains.kotlin:kotlin-stdlib"
+# TODO: https://github.com/JetBrains/kotlin/commit/656b61b945a46fb20d7c01cda85399914585f215#diff-fe49a6cee89678508563fae0cd006f9dc0523da9ef8582f44d8b0df02b72701eR68
+COPY "./gradle/build-logic/convention/"         "${WORKDIR}/gradle/build-logic/convention/"
+COPY "./gradle/build-logic/settings.gradle.kts" "${WORKDIR}/gradle/build-logic/"
+COPY "./gradle/wrapper/"                        "${WORKDIR}/gradle/wrapper/"
+COPY "./gradle/init.gradle.kts"                 "${WORKDIR}/gradle/"
+COPY "./gradle/libs.versions.toml"              "${WORKDIR}/gradle/"
 
-COPY "./src/composeApp/src/"             "${WORKDIR}/src/composeApp/src/"
-COPY "./src/composeApp/build.gradle.kts" "${WORKDIR}/src/composeApp/"
-
+COPY "./src/"                "${WORKDIR}/src/"
 COPY "./build.gradle.kts"    "${WORKDIR}/"
 COPY "./gradle.properties"   "${WORKDIR}/"
 COPY "./gradlew"             "${WORKDIR}/"
 COPY "./settings.gradle.kts" "${WORKDIR}/"
 
 RUN --mount=type=cache,target=/root/.gradle/,sharing=locked --mount=type=bind,source=./jks/,target=${WORKDIR}/jks/,readonly=true <<EOF
-    ./gradlew :src:composeApp:build
+    ./gradlew --init-script "./gradle/init.gradle.kts" build
 EOF
 
 # hadolint ignore=DL3006
@@ -86,7 +86,7 @@ FROM scratch as artifact
 
 ARG WORKDIR
 
-COPY --from=builder "${WORKDIR}/src/composeApp/build/outputs/apk/release/composeApp-release.apk" "/src/composeApp/build/outputs/apk/release/"
+COPY --from=builder "${WORKDIR}/out/src/composeApp/build/outputs/apk/release/composeApp-release.apk" "/out/src/composeApp/build/outputs/apk/release/"
 
 FROM docker.io/library/eclipse-temurin:21-jdk-alpine as runner
 

@@ -7,8 +7,8 @@ androidx-activity = "1.8.2"
 androidx-compose-material3 = "1.1.2"
 androidx-compose-runtime = "1.6.0"
 jdk = "21"
-jetbrains-compose = "1.5.11"
-jetbrains-kotlin = "1.9.21"
+jetbrains-compose = "1.6.0"
+jetbrains-kotlin = "2.0.0-Beta4"
 jna = "5.14.0"
 
 [libraries]

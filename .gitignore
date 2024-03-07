@@ -1,7 +1,8 @@
 # @help: https://git-scm.com/docs/gitignore
 
 .gradle/
-build/
+.kotlin/
+out/
 
 jniLibs/
 **/kotlin/uniffi
