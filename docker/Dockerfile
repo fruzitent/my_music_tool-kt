@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.6-labs
+# syntax=docker.io/docker/dockerfile:1.6-labs
 # @help: https://docs.docker.com/reference/dockerfile
 
 ARG WORKDIR="/workspaces/my_music_tool-kt/"
