@@ -1,0 +1,134 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.gradle.kotlin",
+    "module": "gradle-kotlin-dsl-plugins",
+    "version": "4.3.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.7-rc-2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "gradle-kotlin-dsl-plugins-4.3.1.jar",
+          "url": "gradle-kotlin-dsl-plugins-4.3.1.jar",
+          "size": 47699,
+          "sha512": "e2238752acd15059a4140b2ce5653c79e6eb4e38e095bf28314db6ece92e913c054db4f07751ed653b61823487754a2466027282a0eea53488c344ffbfd7a7c2",
+          "sha256": "d403dfc88f53ec4c91ae490c9c3da7051861e1789fda9d1669ed7d16c883fc50",
+          "sha1": "728141892edbcf48baedc203902171d2e823dcea",
+          "md5": "74c299bfd0f7d38777ddc357c4ec71a5"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.0.0-Beta4"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-gradle-plugin",
+          "version": {
+            "requires": "2.0.0-Beta4"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-sam-with-receiver",
+          "version": {
+            "requires": "2.0.0-Beta4"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-assignment",
+          "version": {
+            "requires": "2.0.0-Beta4"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "gradle-kotlin-dsl-plugins-4.3.1.jar",
+          "url": "gradle-kotlin-dsl-plugins-4.3.1.jar",
+          "size": 47699,
+          "sha512": "e2238752acd15059a4140b2ce5653c79e6eb4e38e095bf28314db6ece92e913c054db4f07751ed653b61823487754a2466027282a0eea53488c344ffbfd7a7c2",
+          "sha256": "d403dfc88f53ec4c91ae490c9c3da7051861e1789fda9d1669ed7d16c883fc50",
+          "sha1": "728141892edbcf48baedc203902171d2e823dcea",
+          "md5": "74c299bfd0f7d38777ddc357c4ec71a5"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "gradle-kotlin-dsl-plugins-4.3.1-sources.jar",
+          "url": "gradle-kotlin-dsl-plugins-4.3.1-sources.jar",
+          "size": 10309,
+          "sha512": "954851988af6f2363e7dfeaca349821bb52c5ced543aed430dba87d4a3c41b169b32f7f002b9f7eca15e48916a5352ce5632ff3caa60c3a961125718d94fdc4d",
+          "sha256": "db7692cfe6c5dcdc51a10460eeb390341e2989c482a1f157412442fc3d6f02c6",
+          "sha1": "c458d73a5839942a574e67e6163f4f5102b623f3",
+          "md5": "3b1e005f1851f661124117266592e220"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "gradle-kotlin-dsl-plugins-4.3.1-javadoc.jar",
+          "url": "gradle-kotlin-dsl-plugins-4.3.1-javadoc.jar",
+          "size": 297,
+          "sha512": "df0667ef494a829e1e2456a2d8298e40c470792476172a927d386044aa2fca6864c471c654ad6d9eb4e60007abfd80a6c26c45b63b7b5f236014d791d184f126",
+          "sha256": "5b17c00a41b8306b66687b2a00bccfd4651e499619081bdf2773354a34c9f7ac",
+          "sha1": "b6f82ff70681305ac8bd5ff29c330e18937fb878",
+          "md5": "18f4ee3b86e1b96220b0c3269e0b1322"
+        }
+      ]
+    }
+  ]
+}

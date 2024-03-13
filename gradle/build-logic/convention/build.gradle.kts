@@ -1,6 +1,9 @@
 // @help: https://docs.gradle.org/current/kotlin-dsl
 
-plugins { `kotlin-dsl` }
+plugins {
+  // TODO: Gradle v9.0 ft. Kotlin 2.0
+  id("org.gradle.kotlin.kotlin-dsl") version "4.3.1"
+}
 
 dependencies {
   compileOnly(libs.gradle.android)

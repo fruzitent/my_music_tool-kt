@@ -77,8 +77,8 @@ COPY "./gradle.properties"   "${WORKDIR}/"
 COPY "./gradlew"             "${WORKDIR}/"
 COPY "./settings.gradle.kts" "${WORKDIR}/"
 
-RUN --mount=type=cache,target=/root/.gradle/,sharing=locked --mount=type=bind,source=./jks/,target=${WORKDIR}/jks/,readonly=true <<EOF
-    ./gradlew --init-script "./gradle/init.gradle.kts" build
+RUN --mount=type=cache,target=/root/.gradle/,sharing=locked --mount=type=cache,target=/root/.kotlin/,sharing=locked --mount=type=bind,source=./jks/,target=${WORKDIR}/jks/,readonly=true <<EOF
+    ./gradlew assembleRelease
 EOF
 
 # hadolint ignore=DL3006
