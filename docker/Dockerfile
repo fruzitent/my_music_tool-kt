@@ -63,14 +63,10 @@ COPY --from=rs "./target/aarch64-linux-android/release/libspotify.so" "${WORKDIR
 COPY --from=rs "./target/x86_64-linux-android/release/libspotify.so"  "${WORKDIR}/src/composeApp/src/androidMain/jniLibs/x86_64/"
 COPY --from=rs "./out/uniffi/"                                        "${WORKDIR}/src/composeApp/src/commonMain/kotlin/uniffi/"
 
-# TODO: "com.android.tools.build" and "org.gradle.kotlin.kotlin-dsl" embed "org.jetbrains.kotlin:kotlin-stdlib"
-# TODO: https://github.com/JetBrains/kotlin/commit/656b61b945a46fb20d7c01cda85399914585f215#diff-fe49a6cee89678508563fae0cd006f9dc0523da9ef8582f44d8b0df02b72701eR68
-COPY "./gradle/build-logic/convention/"         "${WORKDIR}/gradle/build-logic/convention/"
-COPY "./gradle/build-logic/settings.gradle.kts" "${WORKDIR}/gradle/build-logic/"
-COPY "./gradle/wrapper/"                        "${WORKDIR}/gradle/wrapper/"
-COPY "./gradle/init.gradle.kts"                 "${WORKDIR}/gradle/"
-COPY "./gradle/libs.versions.toml"              "${WORKDIR}/gradle/"
+# TODO: Gradle v9.0 ft. Kotlin 2.0
+COPY "./.m2/" "${WORKDIR}/.m2/"
 
+COPY "./gradle/"             "${WORKDIR}/gradle/"
 COPY "./src/"                "${WORKDIR}/src/"
 COPY "./build.gradle.kts"    "${WORKDIR}/"
 COPY "./gradle.properties"   "${WORKDIR}/"
