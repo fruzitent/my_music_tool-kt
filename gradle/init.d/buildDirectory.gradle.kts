@@ -2,7 +2,7 @@
 
 import java.nio.file.Paths
 
-val savedRootDir = file("../")
+val savedRootDir = file(System.getProperty("user.dir"))
 
 allprojects {
   val oldBuildDir = layout.buildDirectory.asFile.get().relativeTo(savedRootDir)
