@@ -2,6 +2,7 @@ package org.fruzitent.mymusictool.gradle
 
 import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.gradle.BaseExtension
+import java.io.File
 import java.io.FileInputStream
 import java.util.Properties
 import org.gradle.api.Project
@@ -18,31 +19,46 @@ fun Project.configureAndroid() {
   androidComponents {}
 }
 
-fun Project.configureKeystore() {
-  val keystorePropertiesFile = file("${project.rootDir}/jks/keystore.properties")
-  val keystoreProperties = Properties()
-
-  if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
-  } else {
-    keystoreProperties["keyAlias"] = System.getenv("KEYALIAS") ?: error("KEYALIAS is not set")
-    keystoreProperties["keyPassword"] = System.getenv("KEYPWD") ?: error("KEYPWD is not set")
-    keystoreProperties["storeFile"] = System.getenv("KSTOREFILE") ?: error("KSTOREFILE is not set")
-    keystoreProperties["storePassword"] = System.getenv("KSTOREPWD") ?: error("KSTOREPWD is not set")
+private val Project.keystoreProperties: Lazy<Properties?>
+  get() = lazy {
+    val keystorePropertiesFile = rootProject.file("./jks/keystore.properties")
+    if (keystorePropertiesFile.exists()) {
+      Properties().apply { load(FileInputStream(keystorePropertiesFile)) }
+    } else {
+      null
+    }
   }
 
+private fun Project.getProperty(key: String, name: String): String {
+  return keystoreProperties.value?.getProperty(key)
+    ?: System.getenv(name)
+    ?: error("${name} is not set")
+}
+
+private fun Project.getStoreFile(pathname: String): File {
+  return if (File(pathname).isAbsolute) {
+    file(pathname)
+  } else {
+    file("${project.rootDir}/${pathname}")
+  }
+}
+
+fun Project.configureKeystore() {
   android {
-    signingConfigs {
-      create("release") {
-        keyAlias = keystoreProperties.getProperty("keyAlias")
-        keyPassword = keystoreProperties.getProperty("keyPassword")
-        storeFile = file("${project.rootDir}/${keystoreProperties.getProperty("storeFile")}")
-        storePassword = keystoreProperties.getProperty("storePassword")
-      }
-    }
     buildTypes {
       getByName("release") {
-        signingConfig = signingConfigs.getByName("release")
+        isMinifyEnabled = true
+        signingConfig = signingConfigs.create("release")
+      }
+    }
+    signingConfigs {
+      if (keystoreProperties.value != null) {
+        getByName("release") {
+          keyAlias = getProperty("keyAlias", "KEYALIAS")
+          keyPassword = getProperty("keyPassword", "KEYPWD")
+          storeFile = getStoreFile(getProperty("storeFile", "KSTOREFILE"))
+          storePassword = getProperty("storePassword", "KSTOREPWD")
+        }
       }
     }
   }
